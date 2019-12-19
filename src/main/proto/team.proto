@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package com.baegoon.protocol.proto;
+
+option java_multiple_files = true;
+option java_package = "com.baegoon.protocol.proto";
+option java_outer_classname = "TeamProto";
+
+message TeamCreationRequest {
+    string name = 1;
+    int32 max_member_limit_number = 10;
+}
+
+message TeamCreationResponse {
+    int64 team_id = 1;
+    string name = 2;
+}
+
+service Team {
+    rpc CreateTeam(TeamCreationRequest) returns (TeamCreationResponse);
+}
