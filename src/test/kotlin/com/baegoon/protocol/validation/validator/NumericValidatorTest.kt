@@ -16,8 +16,6 @@ internal class NumericValidatorTest {
         val fieldName = "나이"
         val fieldValue = 25
 
-
-
         Assertions.assertTrue(validator!!.validate(fieldName, fieldValue, null))
     }
 }
