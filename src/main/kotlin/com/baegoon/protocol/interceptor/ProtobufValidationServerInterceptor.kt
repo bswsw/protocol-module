@@ -52,7 +52,7 @@ class ProtobufValidationServerInterceptor : ServerInterceptor {
 
     private fun validateField(fieldName: String, fieldValue: Any, fieldRules: Map<Descriptors.FieldDescriptor, Any>) {
         fieldRules.entries.forEach {
-            val isValidated = ValidationContext.getValidator(it.key)?.validate(fieldName, fieldValue, it) ?: true
+            val isValidated = ValidationContext.getValidator(it.key)?.validate(fieldValue, it.value.toString()) ?: true
 
             if (!isValidated) {
                 throw ProtobufValidationException(

@@ -13,9 +13,8 @@ internal class EmailValidatorTest {
     @Test
     @DisplayName("이메일 검증 성공 테스트")
     fun testValidateEmail() {
-        val fieldName = "email"
         val fieldValue = "baegoony@gmail.com"
 
-        Assertions.assertTrue(validator!!.validate(fieldName, fieldValue, null))
+        Assertions.assertTrue(validator!!.validate(fieldValue, ""))
     }
 }

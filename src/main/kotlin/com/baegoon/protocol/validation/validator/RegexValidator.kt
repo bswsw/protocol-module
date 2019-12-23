@@ -1,17 +1,9 @@
 package com.baegoon.protocol.validation.validator
 
-import com.google.protobuf.Descriptors
-
 class RegexValidator : Validator {
 
-    override fun <T> validate(
-        fieldName: String,
-        fieldValue: T,
-        rule: Map.Entry<Descriptors.FieldDescriptor, Any>?
-    ): Boolean {
-        return rule?.let {
-            val regex = it.value.toString().toRegex()
-            regex.matches(fieldValue.toString())
-        } ?: false
+    override fun <T> validate(fieldValue: T, rule: String): Boolean {
+        val regex = rule.toRegex()
+        return regex.matches(fieldValue.toString())
     }
 }
