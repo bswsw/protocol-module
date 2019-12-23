@@ -15,6 +15,8 @@ plugins {
     kotlin("jvm") version "1.3.61"
     id("com.google.protobuf") version "0.8.10"
 
+    `java-library`
+    `maven-publish`
     idea
 }
 
@@ -78,6 +80,11 @@ tasks {
     }
 }
 
+java {
+    withSourcesJar()
+    withJavadocJar()
+}
+
 protobuf {
     protoc {
         artifact = "com.google.protobuf:protoc:$protobufVersion"
@@ -91,6 +98,24 @@ protobuf {
         ofSourceSet("main").forEach {
             it.plugins {
                 id("grpc")
+            }
+        }
+    }
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            from(components["java"])
+        }
+    }
+
+    repositories {
+        maven {
+            url = uri("http://localhost:8081/repository/maven-releases")
+            credentials {
+                username = "admin"
+                password = "password"
             }
         }
     }
