@@ -13,9 +13,8 @@ internal class NumericValidatorTest {
     @Test
     @DisplayName("숫자 검증 성공")
     fun testValidateNumeric() {
-        val fieldName = "나이"
         val fieldValue = 25
 
-        Assertions.assertTrue(validator!!.validate(fieldName, fieldValue, null))
+        Assertions.assertTrue(validator!!.validate(fieldValue, ""))
     }
 }
